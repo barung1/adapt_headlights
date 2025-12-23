@@ -1,162 +1,164 @@
-Adaptive Headlight System Using Faster R-CNN
+# Adaptive Headlight System Using Faster R-CNN
 
-This project implements a software-based adaptive headlight system that uses computer vision and deep learning to detect vehicles and headlight glare in nighttime driving scenarios. The system leverages Faster R-CNN to identify glare sources and evaluates performance using detection accuracy, luminance-based glare analysis, and inference time metrics.
+This project implements a **computer vision–based adaptive headlight system** aimed at reducing glare from oncoming vehicles and improving road visibility during nighttime driving. The system leverages **Faster R-CNN** for vehicle and headlight detection and evaluates performance using detection accuracy, luminance-based glare analysis, and runtime efficiency.
 
-The goal is to demonstrate how AI-driven perception can improve nighttime road safety without relying on specialized hardware sensors.
+---
 
-🚀 Key Features
+## 🚀 Key Features
 
-Faster R-CNN–based detection of:
+### Vehicle and Headlight Detection
+* Two-wheelers and four-wheelers
+* Headlight region identification
+* Faster R-CNN with ResNet-50 FPN backbone
 
-Two-wheelers
+### Custom Dataset Support
+* XML annotations (Pascal VOC format)
+* Train/test split for robust evaluation
 
-Four-wheelers
+### Luminance-Based Glare Analysis
+* Measures average headlight luminance
+* Software-based glare mitigation
 
-Headlight regions
+### Quantitative Evaluation Metrics
+* Mean Average Precision (mAP), Precision, Recall
+* Frame processing time
+* Graphical comparisons with YOLOv5, SSD, RetinaNet
 
-Robust object detection in low-light conditions
+### Visualization
+* Bounding box inference visualization
+* Glare reduction and detection performance graphs
 
-Software-based adaptive headlight simulation using OpenCV
+### Platform Flexibility
+* Runs on Google Colab or local GPU
+* Python, PyTorch, OpenCV, Matplotlib, TorchMetrics
 
-Quantitative evaluation using:
+---
 
-mAP, precision, recall
+## 🧠 Motivation
 
-Average headlight luminance
+Nighttime driving is often impaired by **glare from high-beam headlights**, which reduces visibility and increases driver discomfort. Existing adaptive headlight systems rely on **hardware sensors and fixed thresholds**, which are inaccurate in complex traffic scenarios.
 
-Frame processing time
+This project proposes a **software-based AI solution** that dynamically detects vehicles and headlights using **deep learning**, enabling **realistic adaptive glare mitigation simulations** without hardware limitations.
 
-Graphical comparison with popular object detection models
+---
 
-🧠 Motivation
+## 🏗️ System Architecture
 
-Glare from oncoming vehicle headlights is a major cause of reduced visibility and driver discomfort during nighttime driving. Traditional adaptive headlight systems rely on hardware sensors and fixed thresholds, which often fail in complex traffic environments. This project explores a computer vision–based approach that dynamically detects glare sources and simulates adaptive beam control using deep learning.
-
-🏗️ System Architecture
-Nighttime Image / Video Frame
-            ↓
+```
+Input Night Image
+        ↓
 Faster R-CNN Object Detection
-            ↓
-Vehicle & Headlight Localization
-            ↓
-Luminance-Based Glare Analysis
-            ↓
-Adaptive Headlight Simulation
-            ↓
+        ↓
+Headlight Region Identification
+        ↓
+Luminance Analysis (Glare Measurement)
+        ↓
+Adaptive Headlight Simulation (Software-Based)
+        ↓
 Performance Evaluation & Visualization
+```
 
-⚙️ Methodology
-Object Detection
+* **Object Detection**: Detects vehicles and headlights using Faster R-CNN  
+* **Glare Analysis**: Computes average luminance to estimate glare  
+* **Simulation**: Adjusts headlight effect in software for visualization  
+* **Evaluation**: Measures accuracy, runtime, and visual performance  
 
-Faster R-CNN with ResNet-50 FPN backbone
+---
 
-Pretrained on COCO and fine-tuned on a custom dataset
+## ⚙️ Methodology Overview
 
-Pascal VOC–style XML annotations
+### Dataset Structure
 
-Glare Analysis
-
-Headlight regions extracted from model predictions
-
-Average luminance computed using grayscale intensity
-
-High-luminance regions treated as glare sources
-
-Evaluation Metrics
-
-Detection accuracy (mAP, precision, recall)
-
-Average headlight luminance
-
-Inference time per frame
-
-📂 Dataset Structure
+```
 dataset/
- └── split/
-     ├── images/
-     │   ├── train/
-     │   └── test/
-     └── annotations/
-         ├── train/
-         └── test/
+└── split/
+    ├── images/
+    │   ├── train/
+    │   └── test/
+    └── annotations/
+        ├── train/
+        └── test/
+```
 
+* Image format: `.jpg`  
+* Annotation format: `.xml` (Pascal VOC)  
+* Classes:  
+  1. Two-wheeler  
+  2. Four-wheeler  
+  3. Headlight  
 
-Class Labels
+### Installation
 
-1 → Two-wheeler
-
-2 → Four-wheeler
-
-3 → Headlight
-
-🛠 Technologies Used
-
-Python
-
-PyTorch & Torchvision
-
-OpenCV
-
-TorchMetrics
-
-Matplotlib
-
-⚙️ Installation
+```bash
 pip install torch torchvision torchmetrics opencv-python matplotlib
+```
 
-▶️ How to Run
-1️⃣ Train the Model
+### How to Run
+
+#### 1️⃣ Train the Model
+
+```bash
 python main.py
+```
+* Loads the dataset  
+* Trains Faster R-CNN for 10 epochs  
+* Saves the model as `faster_rcnn.pth`  
 
+#### 2️⃣ Evaluate the Model
 
-This will:
+* Computes mAP, precision, recall  
+* Measures average headlight luminance  
+* Calculates frame processing time  
+* Generates comparison graphs  
 
-Load the training dataset
+#### 3️⃣ View Inference Results
 
-Train Faster R-CNN for 10 epochs
+* Displays bounding boxes for vehicles and headlights on test images  
 
-Save the trained model as faster_rcnn.pth
+---
 
-2️⃣ Evaluate the Model
+## 📊 Experimental Evaluation
 
-During execution, the script:
+### Metrics
 
-Computes detection metrics (mAP, precision, recall)
+* **Detection Accuracy**: Mean Average Precision (mAP)  
+* **Glare Reduction**: Average luminance in detected headlight regions  
+* **Runtime Performance**: Inference time per frame  
 
-Measures average headlight luminance
+### Comparative Analysis
 
-Calculates inference time
+Performance compared against:
 
-Generates comparison graphs
+* YOLOv5  
+* SSD  
+* RetinaNet  
 
-3️⃣ Visualize Inference
+Graphs include:
 
-Bounding boxes for detected vehicles and headlights are displayed on test images.
+* mAP comparison  
+* Luminance reduction comparison  
+* Frame processing time comparison  
 
-📊 Results Summary
+---
 
-High detection accuracy in low-light conditions
+## 🧪 Observations
 
-Significant reduction in headlight glare based on luminance metrics
+* Faster R-CNN provides robust detection under low-light conditions  
+* Software-based glare mitigation improves visual clarity  
+* Feasible for real-time ADAS simulation  
 
-Near real-time inference performance on GPU
+---
 
-Competitive performance compared to YOLOv5, SSD, and RetinaNet
+## 🔮 Future Work
 
-⚠️ Limitations
+* Real-time hardware integration with adaptive headlights  
+* Temporal smoothing across video frames  
+* Multi-camera fusion for wider coverage  
+* Real-world vehicle testing  
 
-Software-based simulation (no real headlight hardware)
+---
 
-Single-frame inference without temporal smoothing
+## 👥 Authors
 
-Performance depends on dataset quality
-
-🔮 Future Work
-
-Real-world vehicle integration
-
-Video-based temporal smoothing
-
-Multi-camera fusion
-
-Hardware-in-the-loop testing
+* Barun Gnanasekaran
+* Prabu Thangamurugan
