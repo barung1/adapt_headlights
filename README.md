@@ -1,4 +1,4 @@
-# Adaptive Headlight System Using Faster R-CNN
+#  Dynamic Headlight System Using Faster R-CNN for Enhanced Nighttime Visibility
 
 This project implements a **computer vision–based adaptive headlight system** aimed at reducing glare from oncoming vehicles and improving road visibility during nighttime driving. The system leverages **Faster R-CNN** for vehicle and headlight detection and evaluates performance using detection accuracy, luminance-based glare analysis, and runtime efficiency.
 
