@@ -1,0 +1,37 @@
+<annotation>
+	<folder>headlights</folder>
+	<filename>frame_8530.jpg</filename>
+	<path>/headlights/frame_8530.jpg</path>
+	<source>
+		<database>Unspecified</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<object>
+		<name>headlight</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1009</xmin>
+			<ymin>577</ymin>
+			<xmax>1021</xmax>
+			<ymax>589</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>two wheeler</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1009</xmin>
+			<ymin>569</ymin>
+			<xmax>1020</xmax>
+			<ymax>597</ymax>
+		</bndbox>
+	</object>
+</annotation>
